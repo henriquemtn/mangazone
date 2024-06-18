@@ -139,7 +139,7 @@ export default function UserMenu() {
     <div className="flex gap-4 items-center">
       <div
         onClick={handleListNavigate}
-        className="flex items-center gap-1 cursor-pointer"
+        className="hidden md:flex items-center gap-1 cursor-pointer"
       >
         <ClipboardList color="#181818" />
         <p className="font-medium text-[14px] text-[#181818]">Minha Lista</p>
@@ -147,7 +147,7 @@ export default function UserMenu() {
 
       <div
         onClick={handleProfileNavigate}
-        className="flex items-center gap-1 cursor-pointer"
+        className="hidden md:flex items-center gap-1 cursor-pointer"
       >
         <LibraryBig color="#181818" />
         <p className="font-medium text-[14px] text-[#181818]">Meus Mangás</p>
@@ -177,8 +177,8 @@ export default function UserMenu() {
         <Popover>
           <PopoverTrigger>
             <div className="flex gap-1">
-              <CircleUserRound color="#181818" />
-              <p className="font-medium text-[14px] text-[#181818]">
+              <CircleUserRound className="w-7 h-7" color="#181818" />
+              <p className="hidden md:block font-medium text-[14px] text-[#181818]">
                 Entre ou cadastre-se
               </p>
             </div>
@@ -188,7 +188,9 @@ export default function UserMenu() {
           </PopoverContent>
         </Popover>
       )}
-      <MessageCircleMore />
+      <Link href='/reviews'>
+        <MessageCircleMore className="hidden md:flex" />
+      </Link>
     </div>
   );
 }

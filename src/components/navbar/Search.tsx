@@ -59,13 +59,13 @@ export default function Search() {
   };
 
   return (
-    <div className="relative w-full max-w-md">
+    <div className="z-50 relative w-full px-4 md:px-0 max-w-md">
       <div className="relative">
         <Input
           type="search"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Search for products..."
+          placeholder="Procure por mangás..."
           className="w-full rounded-md border border-gray-300 px-4 py-2 pr-10 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
         />
         <button
@@ -83,7 +83,7 @@ export default function Search() {
               searchResults.map((manga) => (
                 <li
                   key={manga._id}
-                  className="px-4 py-2 text-gray-800 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700"
+                  className="px-4 w-full py-2 text-gray-800 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700"
                 >
                   <Link href={`/manga/${manga._id}`} prefetch={false}>
                     <div className="flex items-center">
@@ -92,7 +92,7 @@ export default function Search() {
                         alt={manga.title}
                         height={40}
                         width={40}
-                        className="mr-3 h-10 w-10 rounded-md object-cover"
+                        className="mr-3 h-24 w-16 rounded-md object-cover"
                       />
                       <div>
                         <h3 className="font-medium">{manga.title}</h3>

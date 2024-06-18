@@ -1,5 +1,6 @@
 import Carousel from "@/components/carrousel/Carousel";
 import Container from "@/components/container/Container";
+import Footer from "@/components/footer/Footer";
 import OfertasDoDia from "@/components/mangas/ofertasdodia/Ofertas";
 import Navbar from "@/components/navbar/Navbar";
 import Image from "next/image";
@@ -11,6 +12,7 @@ export default function Home() {
       <Carousel />
       <Container />
       <OfertasDoDia />
+      <Footer />
     </div>
   );
 }

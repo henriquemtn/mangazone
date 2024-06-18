@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { EditarPerfil } from "@/app/_components/profile/EditarPerfil";
 import MangaCollection from "@/app/_components/profile/MangaCollection";
+import Footer from "@/components/footer/Footer";
 
 export default function UserPage({ params }: any) {
   const userId = params.userId;
@@ -99,10 +100,11 @@ export default function UserPage({ params }: any) {
               )}
           </div>
           <div className="col-span-2 grid gap-6">
-            <MangaCollection userId={userId} />
+            <MangaCollection userId={userId} isCurrentUser={isCurrentUser} />
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

@@ -3,40 +3,73 @@
  * @see https://v0.dev/t/KNl7WbnV1vQ
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
-import { Card } from "@/components/ui/card"
-import Image from "next/image"
+import { Card } from "@/components/ui/card";
+import { Heart, MessageCircle, ShareIcon } from "lucide-react";
+import Image from "next/image";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 export default function ReviewCard() {
   return (
-    <Card className="w-full max-w-2xl p-6 grid gap-6">
-      <div className="grid md:grid-cols-[100px_1fr_150px] gap-6 items-center">
-        <Image src="/placeholder.svg" alt="Manga cover" width={100} height={150} className="rounded-lg object-cover" />
-        <div className="grid gap-2">
-          <h2 className="text-xl font-bold">The Wandering Swordsman</h2>
-          <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-            <div>Reviewed by</div>
-            <div className="font-medium">Jared Palmer</div>
+    <Card className="w-full max-w-2xl p-6 grid gap-6 my-4">
+      <div className="flex md:flex-row flex-col items-center gap-6">
+        <Image
+          src="https://m.media-amazon.com/images/I/51zPKHupwGL._SY445_SX342_.jpg"
+          alt="Manga cover"
+          width={150}
+          height={200}
+          className="rounded-lg object-cover"
+        />
+        <div className="flex gap-2">
+          <div className="flex flex-col">
+            <div className="flex flex-col  w-full justify-between">
+              <h2 className="text-xl font-bold">
+                Nova Funcionalidade em Breve!
+              </h2>
+              <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
+                <div>Análise feita por</div>
+                <div className="flex items-center gap-2">
+                  <span className="font-medium text-[#4C3BC2]">
+                    Henrique Silveira
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div className="grid gap-4">
+              <p className="text-gray-500 dark:text-gray-400">
+                Estamos desenvolvendo uma nova Feature, teremos uma
+                funcionalidade de Reviews, onde o usuário poderá criar reviews
+                sobre seus mangás!
+              </p>
+            </div>
           </div>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-col items-center gap-2">
           <div className="flex items-center gap-0.5">
-            <StarIcon className="w-5 h-5 fill-primary" />
-            <StarIcon className="w-5 h-5 fill-primary" />
-            <StarIcon className="w-5 h-5 fill-primary" />
-            <StarIcon className="w-5 h-5 fill-muted stroke-muted-foreground" />
+            <StarIcon className="w-5 h-5 fill-[#4C3BC2]" />
+            <StarIcon className="w-5 h-5 fill-[#4C3BC2]" />
+            <StarIcon className="w-5 h-5 fill-[#4C3BC2]" />
+            <StarIcon className="w-5 h-5 fill-[#4C3BC2]" />
             <StarIcon className="w-5 h-5 fill-muted stroke-muted-foreground" />
           </div>
-          <span className="text-sm text-gray-500 dark:text-gray-400">4.2 out of 5</span>
+          <span className="text-sm text-gray-500 dark:text-gray-400">9/10</span>
         </div>
       </div>
-      <div className="grid gap-4">
-        <p className="text-gray-500 dark:text-gray-400">
-          Follow the journey of a skilled swordsman as he traverses the land, encountering challenges and forging new
-          bonds.
-        </p>
+      <hr />
+      <div className="flex w-full justify-around">
+        <div className="flex gap-2">
+          <Heart fill="#4C3BC2" color="#4C3BC2" />
+          <span className="text-[#4C3BC2]">7</span>
+        </div>
+        <div className="flex gap-2">
+          <MessageCircle color="#969799" />
+          <span className="text-[#4C3BC2]">7</span>
+        </div>
+        <div className="flex gap-2">
+          <ShareIcon color="#969799" />
+        </div>
       </div>
     </Card>
-  )
+  );
 }
 
 function StarIcon(props: any) {
@@ -55,5 +88,5 @@ function StarIcon(props: any) {
     >
       <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
     </svg>
-  )
+  );
 }

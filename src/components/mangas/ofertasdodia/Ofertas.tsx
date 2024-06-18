@@ -37,7 +37,7 @@ export default function OfertasDoDia() {
   };
 
   return (
-    <div className="min-h-screen w-full p-2 md:px-64">
+    <div className="pb-20 w-full p-2 md:px-64">
       {isLoading ? (
         <div className="overflow-x-auto">
           <div className="flex space-x-4">

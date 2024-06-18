@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { CheckCheckIcon, CheckIcon, PlusCircleIcon } from "lucide-react";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 interface Volume {
   _id: string;
@@ -27,9 +28,11 @@ interface Volume {
 
 interface MangaCollectionProps {
   userId: string;
+  isCurrentUser: boolean;
 }
 
-const MangaCollection: React.FC<MangaCollectionProps> = ({ userId }) => {
+const MangaCollection: React.FC<MangaCollectionProps> = ({ userId, isCurrentUser }) => {
+  const router = useRouter();
   const [mangaCollections, setMangaCollections] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -211,9 +214,9 @@ const MangaCollection: React.FC<MangaCollectionProps> = ({ userId }) => {
                   className="w-full h-[350px] object-cover"
                 />
                 <div className="p-1">
-                  <h3 className="text-lg font-bold mb-2">{manga.title}</h3>
+                  <h3 className="text-lg font-bold mb-1">{manga.title}</h3>
                   <p className="text-gray-500 dark:text-gray-400 mb-2">
-                    Autor: {manga.author}
+                    {manga.author}
                   </p>
                 </div>
                 <div className="flex justify-between z-20 w-full rounded-t-md p-2">
@@ -258,14 +261,16 @@ const MangaCollection: React.FC<MangaCollectionProps> = ({ userId }) => {
                             className="w-[150px]"
                           />
                           <div className="flex flex-row justify-between mt-1 w-full">
-                            <Button variant="secondary" className="w-2/3">
+                            <Button onClick={() => router.push(volume.link || "#")} variant="secondary" className="w-2/3">
                               Comprar
                             </Button>
+                            
                             {manga.collectionVolumes.includes(volume._id) ? (
                               <Button
                                 variant="outline"
                                 className="w-1/3"
                                 onClick={() => handleRemoveVolume(manga._id, [volume._id])}
+                                disabled={!isCurrentUser}
                               >
                                 <CheckIcon color="#6B57F1" />
                               </Button>
@@ -276,6 +281,7 @@ const MangaCollection: React.FC<MangaCollectionProps> = ({ userId }) => {
                                 onClick={() =>
                                   handleAddVolume(manga._id, [volume._id])
                                 }
+                                disabled={!isCurrentUser}
                               >
                                 <PlusCircleIcon />
                               </Button>
@@ -285,14 +291,18 @@ const MangaCollection: React.FC<MangaCollectionProps> = ({ userId }) => {
                       ))}
                     </div>
                   </DialogHeader>
+
                   <div>
-                    <Button
-                      onClick={() => handleDeleteManga(manga._id)}
-                      variant="secondary"
-                      className="w-full"
-                    >
-                      Remover Mangá da coleção
-                    </Button>
+                   {isCurrentUser && (
+                     <Button
+                     onClick={() => handleDeleteManga(manga._id)}
+                     variant="secondary"
+                     className="w-full"
+                     disabled={!isCurrentUser}
+                   >
+                     Remover Mangá da coleção
+                   </Button>
+                   )}
                   </div>
                 </div>
               );
