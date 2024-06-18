@@ -5,7 +5,7 @@ import * as cheerio from "cheerio";
 export async function GET(request: Request) {
   let browser;
   try {
-    browser = await puppeteer.launch();
+    browser = await puppeteer.launch({headless: true});
     const page = await browser.newPage();
     await page.goto(
       "https://www.amazon.com.br/s?k=mangas&rh=n%3A7842710011&__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&linkCode=ll2&tag=minhacoleca09-20&linkId=e3830a2b0c7a87636099814e501535ed&language=pt_BR&ref_=as_li_ss_tl"
