@@ -1,10 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import axios from "axios";
-import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
+import amazonOffers from "@/app/db/amazon-offers";
 
 interface Oferta {
   imageUrl: string;
@@ -20,19 +18,11 @@ export default function OfertasDoDia() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("/api/amazon-offers");
-        const filteredMangas = response.data.products.filter((manga: Oferta) => manga.title && manga.price && manga.imageUrl);
-        setMangas(filteredMangas);
-      } catch (error) {
-        console.error("Erro ao obter mangás:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
+    // Simulação de uma requisição assíncrona (pode ser axios.get, fetch, etc.)
+    setTimeout(() => {
+      setMangas(amazonOffers.products); // Define os produtos do arquivo como mangas
+      setIsLoading(false); // Marca o carregamento como completo
+    }, 2000); // Simula um delay de 2 segundos para carregar os dados (opcional)
   }, []);
 
   const truncateTitle = (title: string, maxLength: number) => {
@@ -79,6 +69,9 @@ export default function OfertasDoDia() {
                   <h1 className="font-bold text-[14px]">
                     {truncateTitle(manga.title, 35)}
                   </h1>
+                  <span className="text-[#222] text-[12px]">
+                    {manga.author}
+                  </span>
                 </div>
                 <div className="flex flex-row gap-1 items-center mt-2">
                   <span className="text-[#17A400] font-semibold text-xl">

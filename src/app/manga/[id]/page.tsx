@@ -12,7 +12,7 @@ export default function MangaPage({ params }: any) {
   return (
     <div>
       <Navbar />
-      <MangaSearchById mangaUrl={`http://localhost:3000/api/mangas/${id}`} />
+      <MangaSearchById mangaUrl={`https://api-mangazone.onrender.com/api/mangas/${id}`} />
     </div>
   );
 }

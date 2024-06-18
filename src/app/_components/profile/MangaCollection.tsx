@@ -49,14 +49,14 @@ const MangaCollection: React.FC<MangaCollectionProps> = ({ userId }) => {
     try {
       setIsLoading(true);
       const response = await axios.get(
-        `http://localhost:3000/api/users/${userId}/mangasCollections`
+        `https://api-mangazone.onrender.com/api/users/${userId}/mangasCollections`
       );
       const collections = response.data;
 
       const promises = collections.map(async (collection: any) => {
         try {
           const mangaResponse = await axios.get(
-            `http://localhost:3000/api/mangas/${collection.mangaId}`
+            `https://api-mangazone.onrender.com/api/mangas/${collection.mangaId}`
           );
           const manga = mangaResponse.data;
 
@@ -92,7 +92,7 @@ const MangaCollection: React.FC<MangaCollectionProps> = ({ userId }) => {
   const handleDeleteManga = async (mangaId: string) => {
     try {
       await axios.delete(
-        `http://localhost:3000/api/users/${userId}/mangasCollections/${mangaId}`
+        `https://api-mangazone.onrender.com/api/users/${userId}/mangasCollections/${mangaId}`
       );
       setMangaCollections((prevMangas) =>
         prevMangas.filter((manga) => manga._id !== mangaId)
@@ -122,7 +122,7 @@ const MangaCollection: React.FC<MangaCollectionProps> = ({ userId }) => {
       const updatedVolumes = Array.from(existingVolumes);
 
       await axios.put(
-        `http://localhost:3000/api/users/${userId}/mangas/${mangaId}/volumes`,
+        `https://api-mangazone.onrender.com/api/users/${userId}/mangas/${mangaId}/volumes`,
         {
           volumes: updatedVolumes,
         }
@@ -160,7 +160,7 @@ const MangaCollection: React.FC<MangaCollectionProps> = ({ userId }) => {
       );
 
       await axios.delete(
-        `http://localhost:3000/api/users/${userId}/mangas/${mangaId}/volumes`,
+        `https://api-mangazone.onrender.com/api/users/${userId}/mangas/${mangaId}/volumes`,
         {
           data: {
             volumes: volumesToRemove,
