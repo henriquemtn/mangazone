@@ -6,9 +6,9 @@ import { Button } from "@/components/ui/button";
 import { PlusCircleIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { auth } from "@/firebase/firebaseConfig";
 import { User } from "firebase/auth";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
+import Image from "next/image";
 
 
 interface Volume {
@@ -145,7 +145,7 @@ export default function MangaSearchById({ mangaUrl }: CP) {
               <Button onClick={handleAddToCollection} className="">Adicionar a Minha Coleção</Button>
             </div>
             <div className="hidden md:block">
-              <img
+              <Image
                 src={manga.imageUrl || "/placeholder.svg"}
                 alt={manga.title}
                 width={200}

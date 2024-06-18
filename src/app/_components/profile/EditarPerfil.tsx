@@ -59,9 +59,9 @@ export function EditarPerfil({ userId, profileDisplayName, profilePhotoURL, prof
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
-          <SheetTitle>Edit profile</SheetTitle>
+          <SheetTitle>Editar Perfil</SheetTitle>
           <SheetDescription>
-            Make changes to your profile here. Click save when you're done.
+            Mude suas informações do perfil.
           </SheetDescription>
         </SheetHeader>
         <div className="grid gap-4 py-4">

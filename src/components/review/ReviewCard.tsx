@@ -4,12 +4,13 @@
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
 import { Card } from "@/components/ui/card"
+import Image from "next/image"
 
 export default function ReviewCard() {
   return (
     <Card className="w-full max-w-2xl p-6 grid gap-6">
       <div className="grid md:grid-cols-[100px_1fr_150px] gap-6 items-center">
-        <img src="/placeholder.svg" alt="Manga cover" width={100} height={150} className="rounded-lg object-cover" />
+        <Image src="/placeholder.svg" alt="Manga cover" width={100} height={150} className="rounded-lg object-cover" />
         <div className="grid gap-2">
           <h2 className="text-xl font-bold">The Wandering Swordsman</h2>
           <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">

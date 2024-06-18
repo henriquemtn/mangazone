@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Input } from "../ui/input";
 import { SearchIcon } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface Volume {
   _id: string;
@@ -86,7 +87,7 @@ export default function Search() {
                 >
                   <Link href={`/manga/${manga._id}`} prefetch={false}>
                     <div className="flex items-center">
-                      <img
+                      <Image
                         src={manga.imageUrl || "/placeholder.svg"}
                         alt={manga.title}
                         className="mr-3 h-10 w-10 rounded-md object-cover"
