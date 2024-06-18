@@ -78,7 +78,7 @@ export default function MangaSearchById({ mangaUrl }: CP) {
   const handleAddToCollection = async () => {
     try {
       const userId = "userId"; // Aqui você deve substituir pelo userId do usuário logado
-      const response = await fetch(`http://localhost:3000/api/users/${user?.uid}/mangasCollections`, {
+      const response = await fetch(`https://apimangazone.onrender.com/api/users/${user?.uid}/mangasCollections`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface Oferta {
-  image: string;
+  imageUrl: string;
   title: string;
   author: string;
   price: string;
@@ -22,10 +22,9 @@ export default function OfertasDoDia() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:3000/api/ofertas-mangas"
-        );
-        setMangas(response.data);
+        const response = await axios.get("/api/amazon-offers");
+        const filteredMangas = response.data.products.filter((manga: Oferta) => manga.title && manga.price && manga.imageUrl);
+        setMangas(filteredMangas);
       } catch (error) {
         console.error("Erro ao obter mangás:", error);
       } finally {
@@ -73,7 +72,7 @@ export default function OfertasDoDia() {
               >
                 <div className="w-[168px]">
                   <img
-                    src={manga.image}
+                    src={manga.imageUrl}
                     alt={manga.title}
                     className="w-full rounded-md h-[268px] pb-2"
                   />
@@ -85,9 +84,11 @@ export default function OfertasDoDia() {
                   <span className="text-[#17A400] font-semibold text-xl">
                     {manga.price}
                   </span>
-                  <span className="text-[11px] text-black line-through">
-                    {manga.discount}
-                  </span>
+                  {manga.discount && (
+                    <span className="text-[11px] text-black line-through">
+                      {manga.discount}
+                    </span>
+                  )}
                 </div>
               </div>
             ))}
