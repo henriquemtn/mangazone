@@ -16,7 +16,7 @@ import { Label } from "@/components/ui/label";
 import { useRouter } from "next/navigation";
 import { User } from "firebase/auth";
 
-export function SignUp() {
+export  default function SignUp() {
   const router = useRouter();
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
@@ -165,5 +165,3 @@ export function SignUp() {
     </div>
   );
 }
-
-export default SignUp;
