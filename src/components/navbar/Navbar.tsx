@@ -18,6 +18,7 @@ export default function Navbar() {
       </div>
       <div className="w-full h-[100px] justify-around border-b-[1px] mb-[1px] flex items-center px-4 md:px-40">
         <Logo />
+        <NavigationMobile  />
         <Search />
         <UserMenu />
       </div>
@@ -25,7 +26,6 @@ export default function Navbar() {
         <div className="hidden md:block">
           <NavigationMenuTable />
         </div>
-        <NavigationMobile  />
       </div>
     </div>
   );

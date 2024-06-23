@@ -14,22 +14,13 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import AuthForm from "@/app/_components/auth/AuthForm";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
-import { signOut } from "firebase/auth";
-import { auth } from "@/firebase/firebaseConfig";
-import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { Skeleton } from "../ui/skeleton";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-
-interface User {
-  uid: string;
-  displayName: string;
-  email: string;
-  photoURL: string;
-}
+import LoginForm from "../auth/LoginForm";
+import { Token, User } from "@/types/types";
 
 export default function UserMenu() {
   const [user, setUser] = useState<User | null>(null);
@@ -37,76 +28,43 @@ export default function UserMenu() {
   const router = useRouter();
 
   useEffect(() => {
-    const userData = sessionStorage.getItem("user");
-    if (userData) {
-      const parsedUser = JSON.parse(userData);
+    const storedUser = localStorage.getItem("user");
+
+    if (storedUser) {
+      const parsedUser: User = JSON.parse(storedUser);
       setUser(parsedUser);
-
-      // Buscar dados do Firestore usando o uid
-      const fetchUserData = async () => {
-        const db = getFirestore();
-        const userRef = doc(db, "users", parsedUser.uid);
-        try {
-          const docSnap = await getDoc(userRef);
-          if (docSnap.exists()) {
-            const firestoreUserData = docSnap.data() as User;
-            setUser(firestoreUserData);
-          } else {
-            console.error("Documento do usuário não encontrado");
-          }
-        } catch (error) {
-          console.error("Erro ao buscar dados do usuário:", error);
-        } finally {
-          setIsLoading(false);
-        }
-      };
-
-      fetchUserData();
+      setIsLoading(false);
     } else {
       setIsLoading(false);
     }
   }, []);
 
-  const handleLogout = () => {
-    signOut(auth);
-    sessionStorage.removeItem("user");
-    window.location.reload();
-  };
-
   const handleProfileNavigate = () => {
     if (user) {
-      router.push(`/user/${user.uid}`);
+      router.push(`/u/${user.id}`);
     } else {
       toast("Faça login para acessar. ", {
         duration: 4000,
         position: "top-center",
-
-        // Styling
         style: {},
         className: "",
-
-        // Custom Icon
         icon: "⚠️",
-
-        // Change colors of success/error/loading icon
         iconTheme: {
           primary: "#000",
           secondary: "#fff",
         },
-
-        // Aria
         ariaProps: {
           role: "status",
           "aria-live": "polite",
         },
       });
-      return "#"; // Evitar navegação
+      return "#";
     }
   };
 
   const handleListNavigate = () => {
     if (user) {
-      router.push(`/user/${user.uid}/list`);
+      router.push(`/u/${user.id}/list`);
     } else {
       toast("Faça login para acessar. ", {
         duration: 4000,
@@ -133,6 +91,12 @@ export default function UserMenu() {
       });
       return "#"; // Evitar navegação
     }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    window.location.reload();
   };
 
   return (
@@ -176,7 +140,7 @@ export default function UserMenu() {
       ) : (
         <Popover>
           <PopoverTrigger>
-            <div className="flex gap-1">
+            <div className="flex gap-1 items-center">
               <CircleUserRound className="w-7 h-7" color="#181818" />
               <p className="hidden md:block font-medium text-[14px] text-[#181818]">
                 Entre ou cadastre-se
@@ -184,11 +148,11 @@ export default function UserMenu() {
             </div>
           </PopoverTrigger>
           <PopoverContent>
-            <AuthForm />
+            <LoginForm />
           </PopoverContent>
         </Popover>
       )}
-      <Link href='/reviews'>
+      <Link href="/reviews">
         <MessageCircleMore className="hidden md:flex" />
       </Link>
     </div>

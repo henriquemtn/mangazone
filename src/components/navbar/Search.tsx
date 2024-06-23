@@ -43,7 +43,7 @@ export default function Search() {
 
   const handleSearch = async () => {
     try {
-      const response = await fetch(`https://api-mangazone.onrender.com/api/mangas/search?name=${searchTerm}`);
+      const response = await fetch(`https://api-mangazone.onrender.com/api/mangas?nome=${encodeURIComponent(searchTerm)}`);
       if (!response.ok) {
         throw new Error("Erro na busca");
       }
