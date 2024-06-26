@@ -41,7 +41,7 @@ export default function UserMenu() {
 
   const handleProfileNavigate = () => {
     if (user) {
-      router.push(`/u/${user.id}`);
+      router.push(`/u/${user.username}`);
     } else {
       toast("Faça login para acessar. ", {
         duration: 4000,
@@ -114,7 +114,7 @@ export default function UserMenu() {
         className="hidden md:flex items-center gap-1 cursor-pointer"
       >
         <LibraryBig color="#181818" />
-        <p className="font-medium text-[14px] text-[#181818]">Meus Mangás</p>
+        <p className="font-medium text-[14px] text-[#181818]">Meu Perfil</p>
       </div>
 
       {isLoading ? (
@@ -123,12 +123,14 @@ export default function UserMenu() {
         <Popover>
           <PopoverTrigger>
             <div className="flex items-center justify-center gap-1">
-              <Avatar>
-                <AvatarFallback>
-                  {user.displayName?.charAt(0).toUpperCase()}
-                </AvatarFallback>
-                <AvatarImage src={user.photoURL} />
-              </Avatar>
+              <div className="w-10 h-10">
+                <Avatar>
+                  <AvatarFallback>
+                    {user.displayName?.charAt(0).toUpperCase()}
+                  </AvatarFallback>
+                  <AvatarImage src={user.photoURL} />
+                </Avatar>
+              </div>
             </div>
           </PopoverTrigger>
           <PopoverContent>

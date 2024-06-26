@@ -12,9 +12,12 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import Image from "next/image";
-import { Characters } from "@/types/types";
+import { Characters, User } from "@/types/types";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import Cookies from "js-cookie";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 interface Volume {
   _id: string;
@@ -48,6 +51,18 @@ interface CP {
 
 export default function MangaSearchById({ mangaUrl }: CP) {
   const [manga, setManga] = useState<Manga | null>(null);
+  const [inCollection, setInCollection] = useState(false);
+  let token = Cookies.get("token");
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+
+    if (storedUser) {
+      const parsedUser: User = JSON.parse(storedUser);
+      setUser(parsedUser);
+    }
+  }, []);
 
   useEffect(() => {
     const fetchManga = async () => {
@@ -58,6 +73,9 @@ export default function MangaSearchById({ mangaUrl }: CP) {
         }
         const data = await response.json();
         setManga(data);
+        if (user) {
+          checkInCollection(data._id);
+        }
       } catch (error) {
         if (error instanceof Error) {
           console.error(error.message);
@@ -68,10 +86,54 @@ export default function MangaSearchById({ mangaUrl }: CP) {
     };
 
     fetchManga();
-  }, [mangaUrl]);
+  }, [mangaUrl, user]);
+
+  const handleAddToCollection = async () => {
+    console.log(token);
+
+    if (token) {
+      token = JSON.parse(token);
+    } else {
+      throw new Error("Token de autenticação ausente, acesso negado");
+    }
+
+    try {
+      const response = await axios.post(
+        "https://api-mangazone.onrender.com/api/user/addMangaToCollection",
+        { mangaId: manga?._id },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log(response.data.message);
+      toast.success("Mangá adicionado a sua Coleção");
+      if (user && manga?._id) {
+        checkInCollection(manga._id);
+      }
+    } catch (error: any) {
+      console.error("Erro ao adicionar mangá à coleção:", error.message);
+      toast.error("Erro ao adicionar mangá à coleção!");
+    }
+  };
+
+  const checkInCollection = async (mangaId: string) => {
+    try {
+      const response = await axios.get<boolean>(
+        `https://api-mangazone.onrender.com/api/user/${user?.username}/checkMangaInCollection/${mangaId}`
+      );
+
+      setInCollection(response.data);
+    } catch (error: any) {
+      console.error("Erro ao verificar se o mangá está na coleção:", error.message);
+    }
+  };
 
   if (!manga) {
-    return <div>Loading...</div>;
+    return <div>Carregando...</div>;
   }
 
   return (
@@ -109,6 +171,18 @@ export default function MangaSearchById({ mangaUrl }: CP) {
                 className="rounded-lg shadow-lg"
               />
             </div>
+          </div>
+          <div className="flex gap-2">
+            {!inCollection && (
+              <Button onClick={handleAddToCollection}>
+                Adicionar a Coleção
+              </Button>
+            )}
+            {inCollection && (
+              <Button variant="outline" disabled>
+                Já na Coleção
+              </Button>
+            )}
           </div>
         </div>
       </section>
@@ -153,7 +227,10 @@ export default function MangaSearchById({ mangaUrl }: CP) {
                         </TableCell>
                         <TableCell>R$ {volume.price}</TableCell>
                         <TableCell>
-                          <Button variant="outline" className="items-center gap-2">
+                          <Button
+                            variant="outline"
+                            className="items-center gap-2"
+                          >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               x="0px"
