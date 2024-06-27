@@ -20,7 +20,7 @@ const ShowUser: React.FC<Props> = ({ userId }) => {
     const fetchFriend = async () => {
       try {
         const response = await axios.get<User>(
-          `http://localhost:3000/api/user/id/${userId}`
+          `https://api-mangazone.onrender.com/api/user/id/${userId}`
         );
         setFriend(response.data);
         setLoading(false);
