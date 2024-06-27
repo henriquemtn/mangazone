@@ -29,7 +29,11 @@ const LoginForm = () => {
       }
 
       toast.success("Usuário logado com sucesso!");
-      router.push("/");
+      
+      setTimeout(() => {
+        window.location.reload();
+      }, 1500);
+
     } catch (error: any) {
       console.error("Erro ao realizar login:", error);
       console.error(error.response.data.message);

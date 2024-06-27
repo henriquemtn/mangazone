@@ -66,10 +66,10 @@ export default function OfertasDoDia() {
                     alt={manga.title}
                     className="w-full rounded-md h-[268px] pb-2"
                   />
-                  <h1 className="font-bold text-[14px]">
+                  <h1 className="font-bold text-white text-[14px]">
                     {truncateTitle(manga.title, 35)}
                   </h1>
-                  <span className="text-[#222] text-[12px]">
+                  <span className="text-white text-[12px]">
                     {manga.author}
                   </span>
                 </div>
@@ -78,7 +78,7 @@ export default function OfertasDoDia() {
                     {manga.price}
                   </span>
                   {manga.discount && (
-                    <span className="text-[11px] text-black line-through">
+                    <span className="text-[11px] text-white line-through">
                       {manga.discount}
                     </span>
                   )}

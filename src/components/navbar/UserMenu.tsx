@@ -20,7 +20,7 @@ import { Skeleton } from "../ui/skeleton";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import LoginForm from "../auth/LoginForm";
-import { Token, User } from "@/types/types";
+import { User } from "@/types/types";
 
 export default function UserMenu() {
   const [user, setUser] = useState<User | null>(null);
@@ -69,27 +69,19 @@ export default function UserMenu() {
       toast("Faça login para acessar. ", {
         duration: 4000,
         position: "top-center",
-
-        // Styling
         style: {},
         className: "",
-
-        // Custom Icon
         icon: "⚠️",
-
-        // Change colors of success/error/loading icon
         iconTheme: {
           primary: "#000",
           secondary: "#fff",
         },
-
-        // Aria
         ariaProps: {
           role: "status",
           "aria-live": "polite",
         },
       });
-      return "#"; // Evitar navegação
+      return "#";
     }
   };
 
@@ -105,16 +97,16 @@ export default function UserMenu() {
         onClick={handleListNavigate}
         className="hidden md:flex items-center gap-1 cursor-pointer"
       >
-        <ClipboardList color="#181818" />
-        <p className="font-medium text-[14px] text-[#181818]">Minha Lista</p>
+        <ClipboardList color="#FFFFFF" />
+        <p className="font-medium text-[14px] text-white">Minha Lista</p>
       </div>
 
       <div
         onClick={handleProfileNavigate}
         className="hidden md:flex items-center gap-1 cursor-pointer"
       >
-        <LibraryBig color="#181818" />
-        <p className="font-medium text-[14px] text-[#181818]">Meu Perfil</p>
+        <LibraryBig color="#FFFFFF" />
+        <p className="font-medium text-[14px] text-white">Meu Perfil</p>
       </div>
 
       {isLoading ? (
@@ -123,7 +115,7 @@ export default function UserMenu() {
         <Popover>
           <PopoverTrigger>
             <div className="flex items-center justify-center gap-1">
-              <div className="w-10 h-10">
+              <div className="w-10 h-10 border rounded-full">
                 <Avatar>
                   <AvatarFallback>
                     {user.displayName?.charAt(0).toUpperCase()}
@@ -143,8 +135,8 @@ export default function UserMenu() {
         <Popover>
           <PopoverTrigger>
             <div className="flex gap-1 items-center">
-              <CircleUserRound className="w-7 h-7" color="#181818" />
-              <p className="hidden md:block font-medium text-[14px] text-[#181818]">
+              <CircleUserRound className="w-7 h-7" color="#FFFFFF" />
+              <p className="hidden md:block font-medium text-[14px] text-white">
                 Entre ou cadastre-se
               </p>
             </div>
@@ -155,7 +147,7 @@ export default function UserMenu() {
         </Popover>
       )}
       <Link href="/reviews">
-        <MessageCircleMore className="hidden md:flex" />
+        <MessageCircleMore color="white" className="hidden md:flex" />
       </Link>
     </div>
   );

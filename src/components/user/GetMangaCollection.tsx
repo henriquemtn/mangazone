@@ -1,18 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import GetManga from '../mangas/GetManga';
-interface Manga {
-  _id: string;
-  title: string;
-  author: string;
-  releaseDate: string;
-  alternativeTitles: string[];
-  genres: string[];
-  imageUrl: string;
-  publisherBy: string;
-  synopsis: string;
-  score: number;
-}
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import GetManga from "../mangas/GetManga";
 
 interface MangaCollectionItem {
   mangaId: string;
@@ -20,36 +8,46 @@ interface MangaCollectionItem {
 }
 
 export default function GetMangaCollection({ username }: { username: string }) {
-  const [mangaCollection, setMangaCollection] = useState<MangaCollectionItem[]>([]);
+  const [mangaCollection, setMangaCollection] = useState<MangaCollectionItem[]>(
+    []
+  );
 
   useEffect(() => {
     const fetchMangaCollection = async () => {
       try {
-        const collectionResponse = await axios.get<{ mangaCollection: MangaCollectionItem[] }>(
+        const collectionResponse = await axios.get<{
+          mangaCollection: MangaCollectionItem[];
+        }>(
           `https://api-mangazone.onrender.com/api/user/${username}/mangaCollection`
         );
 
         setMangaCollection(collectionResponse.data.mangaCollection);
-        console.log("MANGA COLECTION",mangaCollection)
       } catch (error: any) {
-        console.error('Erro ao buscar coleção de mangás:', error.message);
+        console.error("Erro ao buscar coleção de mangás:", error.message);
       }
     };
 
     fetchMangaCollection();
   }, [username]);
 
-  if (mangaCollection.length === 0) {
-    return <div>Carregando...</div>;
-  }
-
   return (
-    <div className="container mx-auto">
-      <div className="flex gap-2">
-        {mangaCollection.map((mangaItem) => (
-          <GetManga key={mangaItem._id} mangaId={mangaItem.mangaId} />
-        ))}
+      <div className="container mx-auto">
+        <div className="flex gap-2 items-center justify-start">
+          {mangaCollection.length > 0 ? (
+            mangaCollection.map((mangaItem) => (
+              <GetManga key={mangaItem._id} mangaId={mangaItem.mangaId} />
+            ))
+          ) : (
+            <div className="flex gap-2 items-center justify-center h-full">
+              <hr />
+              <div className="">
+                <p className="text-white">
+                  O usuário ainda não adicionou nenhum mangá à sua coleção.
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
   );
 }

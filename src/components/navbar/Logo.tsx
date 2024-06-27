@@ -7,14 +7,7 @@ const Logo = () => {
   const router = useRouter();
 
   return ( 
-    <Image
-      onClick={() => router.push('/')}
-      className="md:block cursor-pointer hidden" 
-      src="/images/logo.png" 
-      height="30" 
-      width="138" 
-      alt="Logo" 
-    />
+    <h1 className="text-white">MangaZone</h1>
    );
 }
  

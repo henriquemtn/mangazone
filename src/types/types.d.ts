@@ -61,6 +61,16 @@ export interface Manga {
   releaseDate: string;
 }
 
+export interface Artist {
+  _id: string;
+  name: string;
+  photoUrl: string;
+  birthday: string;
+  nationality: number;
+  biography: string;
+  role: string;
+}
+
 export interface Token {
   token: string;
 }

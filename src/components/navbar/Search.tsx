@@ -43,7 +43,11 @@ export default function Search() {
 
   const handleSearch = async () => {
     try {
-      const response = await fetch(`https://api-mangazone.onrender.com/api/mangas?nome=${encodeURIComponent(searchTerm)}`);
+      const response = await fetch(
+        `https://api-mangazone.onrender.com/api/mangas?nome=${encodeURIComponent(
+          searchTerm
+        )}`
+      );
       if (!response.ok) {
         throw new Error("Erro na busca");
       }
@@ -66,18 +70,18 @@ export default function Search() {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Procure por mangás..."
-          className="w-full rounded-md border border-gray-300 px-4 py-2 pr-10 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+          className="bg-[#1C212B] w-full rounded-md border border-gray-300 px-4 py-2 pr-10 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <button
           type="button"
           onClick={handleSearch}
-          className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-500 focus:outline-none"
+          className="absolute right-2 top-1/2 -translate-y-1/2  text-white hover:text-gray-500 focus:outline-none"
         >
           <SearchIcon className="h-5 w-5" />
         </button>
       </div>
       {searchTerm && (
-        <div className="absolute left-0 z-10 mt-2 w-full rounded-md bg-white shadow-lg dark:bg-gray-800">
+        <div className="absolute left-0 z-10 mt-2 w-full rounded-md bg-[#161A22] shadow-lg dark:bg-gray-800">
           <ul className="max-h-64 overflow-y-auto rounded-md py-1">
             {searchResults.length > 0 ? (
               searchResults.map((manga) => (
@@ -95,7 +99,9 @@ export default function Search() {
                         className="mr-3 h-24 w-16 rounded-md object-cover"
                       />
                       <div>
-                        <h3 className="font-medium">{manga.title}</h3>
+                        <h3 className="font-medium  text-white">
+                          {manga.title}
+                        </h3>
                         <p className="text-sm text-gray-500 dark:text-gray-400">
                           {manga.author}
                         </p>
@@ -105,7 +111,7 @@ export default function Search() {
                 </li>
               ))
             ) : (
-              <li className="px-4 py-2 text-gray-800 dark:text-gray-200">
+              <li className="px-4 py-2  text-white dark:text-gray-200">
                 Nenhum resultado encontrado
               </li>
             )}

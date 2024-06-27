@@ -14,7 +14,7 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { EditUserProps, User } from "@/types/types";
+import { User } from "@/types/types";
 import { Edit } from "lucide-react";
 import Cookies from "js-cookie";
 
@@ -93,7 +93,7 @@ export default function EditProfile() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" className="w-1/3">
+        <Button variant="secondary" className="w-1/3">
           <Edit size={16} />
         </Button>
       </DialogTrigger>
