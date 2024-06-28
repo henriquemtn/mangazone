@@ -62,6 +62,7 @@ export default function SignUp() {
                 required
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
+                className="bg-[#22262F]"
               />
             </div>
             <div className="grid gap-2">
@@ -73,6 +74,7 @@ export default function SignUp() {
                 required
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                className="bg-[#22262F]"
               />
             </div>
             <div className="grid gap-2">
@@ -84,6 +86,7 @@ export default function SignUp() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                className="bg-[#22262F]"
               />
             </div>
             <div className="grid gap-2">
@@ -97,6 +100,7 @@ export default function SignUp() {
                 placeholder="*********"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                className="bg-[#22262F]"
               />
             </div>
             <Button onClick={handleSignUp} type="submit" className="w-full">
