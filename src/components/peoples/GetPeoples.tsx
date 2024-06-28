@@ -55,7 +55,7 @@ export default function GetPeoples({ username }: CP) {
         <p className="font-medium  text-white">
           Artistas: ({user.people.length})
         </p>
-        {isAuthenticatedUser ? <AddPeoples /> : null}
+        {isAuthenticatedUser ? <AddPeoples username={username} /> : null}
       </div>
       <div className="flex flex-row gap-1">
         {user.people.map((people: string) => (

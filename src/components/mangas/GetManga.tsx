@@ -6,9 +6,10 @@ import { Badge } from "../ui/badge";
 
 interface Props {
   mangaId: string;
+  inCollection: number;
 }
 
-const GetManga: React.FC<Props> = ({ mangaId }) => {
+const GetManga: React.FC<Props> = ({ mangaId, inCollection }) => {
   const [manga, setManga] = useState<Manga | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -56,13 +57,13 @@ const GetManga: React.FC<Props> = ({ mangaId }) => {
             />
             <div className="flex justify-between">
               <Badge variant="outline">
-                <p className="text-green-500">
-                  1 <span className="text-white"> / 71</span>
+                <p className="text-yellow-500">
+                  {inCollection} <span className="text-white"> / {manga.volumes.length}</span>
                 </p>
               </Badge>
 
-              <Badge variant="outline">
-                <p className="text-white">Colecionando</p>
+              <Badge className="text-purple-500 border-purple-500" variant="outline">
+                Colecionando
               </Badge>
             </div>
           </div>

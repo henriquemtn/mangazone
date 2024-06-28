@@ -12,7 +12,7 @@ import { Label } from "@/components/ui/label";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
-export  default function SignUp() {
+export default function SignUp() {
   const router = useRouter();
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
@@ -40,20 +40,21 @@ export  default function SignUp() {
     }
   };
 
-
   return (
-    <div className="w-full min-h-screen lg:grid lg:grid-cols-2">
+    <div className="w-full min-h-screen lg:grid lg:grid-cols-2 bg-[#22262F]">
       <div className="flex items-center justify-center py-12 h-screen">
         <div className="mx-auto grid w-[350px] gap-6">
           <div className="grid gap-2 text-center">
-            <h1 className="text-3xl font-bold">Registrar-se</h1>
+            <h1 className="text-3xl font-bold text-white">Registrar-se</h1>
             <p className="text-balance text-muted-foreground">
               Crie uma conta e comece a sua coleção!
             </p>
           </div>
           <div className="grid gap-4">
             <div className="grid gap-2">
-              <Label htmlFor="name">Nome</Label>
+              <Label className="text-white" htmlFor="name">
+                Nome
+              </Label>
               <Input
                 id="displayName"
                 type="text"
@@ -64,7 +65,7 @@ export  default function SignUp() {
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="username">Nome de usuário</Label>
+              <Label className="text-white" htmlFor="username">Nome de usuário</Label>
               <Input
                 id="username"
                 type="text"
@@ -75,7 +76,7 @@ export  default function SignUp() {
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="email">Email</Label>
+              <Label className="text-white" htmlFor="email">Email</Label>
               <Input
                 id="email"
                 type="email"
@@ -87,7 +88,7 @@ export  default function SignUp() {
             </div>
             <div className="grid gap-2">
               <div className="flex items-center">
-                <Label htmlFor="password">Password</Label>
+                <Label className="text-white" htmlFor="password">Password</Label>
               </div>
               <Input
                 id="password"
@@ -102,9 +103,9 @@ export  default function SignUp() {
               Criar conta
             </Button>
           </div>
-          <div className="mt-4 text-center text-sm">
+          <div className="mt-4 text-center text-sm text-white">
             Já possui uma conta?{" "}
-            <Link href="/signin" className="underline">
+            <Link href="/" className="underline">
               Entrar
             </Link>
           </div>

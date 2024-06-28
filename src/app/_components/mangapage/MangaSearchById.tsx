@@ -18,6 +18,8 @@ import { Button } from "@/components/ui/button";
 import Cookies from "js-cookie";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { CheckCircle } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface Volume {
   _id: string;
@@ -54,6 +56,7 @@ export default function MangaSearchById({ mangaUrl }: CP) {
   const [inCollection, setInCollection] = useState(false);
   let token = Cookies.get("token");
   const [user, setUser] = useState<User | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -120,6 +123,14 @@ export default function MangaSearchById({ mangaUrl }: CP) {
     }
   };
 
+  const handleLink = (volumeLink: string | undefined) => {
+    if (volumeLink) {
+      router.push(volumeLink);
+    } else {
+      router.push('#');
+    }
+  };
+
   const checkInCollection = async (mangaId: string) => {
     try {
       const response = await axios.get<boolean>(
@@ -138,14 +149,14 @@ export default function MangaSearchById({ mangaUrl }: CP) {
 
   return (
     <div className="w-full mt-40">
-      <section className="bg-gray-100 dark:bg-gray-950 py-12 md:py-16 lg:py-20">
+      <section className="bg-[#22262F] dark:bg-gray-950 py-12 md:py-16 lg:py-20">
         <div className="container max-w-6xl px-4 mx-auto">
           <div className="flex flex-row gap-8 justify-between items-center">
             <div className="flex-col flex w-3/4">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+              <h1 className="text-3xl text-white md:text-4xl lg:text-5xl font-bold mb-4">
                 {manga.title}
               </h1>
-              <p className="text-gray-500 dark:text-gray-400 text-lg md:text-xl mb-6">
+              <p className="text-gray-300 dark:text-gray-400 text-lg md:text-xl mb-6">
                 By {manga.author}
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
@@ -158,7 +169,7 @@ export default function MangaSearchById({ mangaUrl }: CP) {
                   </Badge>
                 ))}
               </div>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+              <p className="text-gray-300 dark:text-gray-300 leading-relaxed mb-6">
                 {manga.synopsis}
               </p>
             </div>
@@ -179,20 +190,22 @@ export default function MangaSearchById({ mangaUrl }: CP) {
               </Button>
             )}
             {inCollection && (
-              <Button variant="outline" disabled>
-                Já na Coleção
+              <Button className="gap-2 text-white" variant="secondary" disabled>
+                Adicionado a coleção
+                <CheckCircle color="white" size={14} />
               </Button>
             )}
           </div>
         </div>
       </section>
-      <section className="py-12 md:py-16 lg:py-20">
+      <hr />
+      <section className="bg-[#22262F] py-12 md:py-16 lg:py-20">
         <div className="container flex max-w-6xl px-4 mx-auto">
           <div className="w-2/3 container max-w-6xl px-4 mx-auto">
-            <h2 className="text-2xl md:text-3xl lg:text-3xl font-medium mb-8">
+            <h2 className="text-white text-2xl md:text-3xl lg:text-3xl font-medium mb-8">
               Volumes adicionados: {manga.volumes.length}
             </h2>
-            <div className="w-full">
+            <div className="w-full text-white">
               <Table>
                 <TableCaption>
                   A list of volumes for {manga.title}.
@@ -228,7 +241,8 @@ export default function MangaSearchById({ mangaUrl }: CP) {
                         <TableCell>R$ {volume.price}</TableCell>
                         <TableCell>
                           <Button
-                            variant="outline"
+                          onClick={() => handleLink(volume.linkAmazon)}
+                            variant="secondary"
                             className="items-center gap-2"
                           >
                             <svg
@@ -259,7 +273,7 @@ export default function MangaSearchById({ mangaUrl }: CP) {
           </div>
           <div className="w-1/3">
             <div className="flex w-full items-center justify-between">
-              <h1>Total de Personagens: {manga.characters.length}</h1>
+              <h1 className="text-white">Total de Personagens: {manga.characters.length}</h1>
             </div>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {manga.characters.map((character) => (

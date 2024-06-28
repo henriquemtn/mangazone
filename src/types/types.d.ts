@@ -13,7 +13,7 @@ export interface User {
   comments?: string[];
   friends?: string[];
   wishlist?: string[];
-  mangaCollection?: string[];
+  mangaCollection?: { mangaId: string; volumes: string[] }[];
   role?: string;
 }
 
@@ -28,13 +28,13 @@ export interface EditUserProps {
 
 interface Volume {
   _id: string;
-  volumeNumber: number;
+  number: number;
   releaseDate: string;
   chapters: string[];
   image: string;
   volumeName: string;
   price?: number;
-  link?: string;
+  linkAmazon?: string;
 }
 
 export interface Characters {

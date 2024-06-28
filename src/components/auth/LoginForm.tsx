@@ -29,11 +29,10 @@ const LoginForm = () => {
       }
 
       toast.success("Usuário logado com sucesso!");
-      
+
       setTimeout(() => {
         window.location.reload();
       }, 1500);
-
     } catch (error: any) {
       console.error("Erro ao realizar login:", error);
       console.error(error.response.data.message);
@@ -41,26 +40,28 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="mx-auto grid w-full gap-6">
+    <div className="bg-[#22262F] mx-auto grid w-full gap-6">
       <div className="grid gap-4">
-        <div className="grid gap-2">
+        <div className="grid gap-2 text-white">
           <Label htmlFor="email">Email</Label>
           <Input
             id="email"
             type="email"
             placeholder="admin@example.com"
             onChange={(e) => setEmail(e.target.value)}
+            className="bg-[#1C212B] w-full rounded-md border border-gray-300 px-4 py-2 pr-10 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
           />
         </div>
         <div className="grid gap-2">
-          <div className="flex items-center">
+          <div className="flex items-center  text-white">
             <Label htmlFor="password">Senha </Label>
           </div>
           <Input
             id="password"
             placeholder="*********"
             type="password"
+            className="bg-[#1C212B] w-full rounded-md border border-gray-300 px-4 py-2 pr-10 focus:border-[#5C45FD]"
             required
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -69,9 +70,10 @@ const LoginForm = () => {
           Login
         </Button>
       </div>
-      <div className="mt-4 text-center text-sm">
+      <hr />
+      <div className="text-center text-sm text-white">
         Ainda não possui uma conta?{" "}
-        <Link href="/signup" className="underline text-[#5C45FD]">
+        <Link href="/signup" className="underline text-[#5C45FD] font-medium">
           Cadastrar
         </Link>
       </div>

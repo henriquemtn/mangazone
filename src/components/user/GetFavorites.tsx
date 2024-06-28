@@ -53,7 +53,7 @@ export default function GetFavorites({ username }: CP) {
         <p className="font-medium  text-white">
           Mangás: ({user.favorites.length})
         </p>
-        {isAuthenticatedUser ? <AddFavorites /> : null}
+        {isAuthenticatedUser ? <AddFavorites username={username} /> : null}
       </div>
       <div className="flex flex-row gap-1">
         {user.favorites.map((favorite: string) => (

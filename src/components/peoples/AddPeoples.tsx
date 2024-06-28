@@ -16,7 +16,11 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
 
-export function AddPeoples() {
+interface CP {
+  username: string;
+}
+
+export function AddPeoples({username}: CP) {
   const [artists, setArtists] = useState<Artist[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [token, setToken] = useState<string | null>(null);
@@ -72,7 +76,7 @@ export function AddPeoples() {
 
       const cleanedToken = tokenFromCookie.replace(/"/g, ""); // Remove as aspas do token
       const response = await axios.get(
-        "https://api-mangazone.onrender.com/api/user/starwhenry",
+        `https://api-mangazone.onrender.com/api/user/${username}`,
         {
           headers: {
             Authorization: `Bearer ${cleanedToken}`,
@@ -99,7 +103,7 @@ export function AddPeoples() {
 
       const cleanedToken = tokenFromCookie.replace(/"/g, ""); // Remove as aspas do token
       await axios.put(
-        "http://localhost:3000/api/user/addPeoples",
+        "https://api-mangazone.onrender.com/api/user/addPeoples",
         {
           artistId,
         },
@@ -128,7 +132,7 @@ export function AddPeoples() {
 
       const cleanedToken = tokenFromCookie.replace(/"/g, ""); // Remove as aspas do token
       await axios.put(
-        "http://localhost:3000/api/user/removePeoples",
+        "https://api-mangazone.onrender.com/api/user/removePeoples",
         {
           artistId,
         },

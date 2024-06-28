@@ -21,6 +21,7 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import LoginForm from "../auth/LoginForm";
 import { User } from "@/types/types";
+import Cookies from "js-cookie";
 
 export default function UserMenu() {
   const [user, setUser] = useState<User | null>(null);
@@ -88,6 +89,7 @@ export default function UserMenu() {
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
+    Cookies.remove("token");
     window.location.reload();
   };
 
@@ -141,7 +143,7 @@ export default function UserMenu() {
               </p>
             </div>
           </PopoverTrigger>
-          <PopoverContent>
+          <PopoverContent className="bg-[#1C212B] ">
             <LoginForm />
           </PopoverContent>
         </Popover>

@@ -97,14 +97,6 @@ const amazonOffers = {
       link: "https://amzn.to/3VLTno6",
     },
     {
-      title: "Yona - A Princesa do Alvorecer - BIG - Vol. 01",
-      author: "Mizuho Kusanagi",
-      price: "R$ 29,60",
-      discount: "R$ 54,90",
-      imageUrl: "https://m.media-amazon.com/images/I/61T5wd7oBVL.AC_UY218.jpg",
-      link: "https://amzn.to/3XsIatP",
-    },
-    {
       title: "Little Witch Academia - Vol. 1",
       author: "Trigger, Yoh Yoshinari, e outros.",
       price: "R$ 28,42",

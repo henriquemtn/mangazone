@@ -7,10 +7,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useRouter } from "next/navigation";
 
 interface Props {
-  userId: string;
+  username: string;
 }
 
-const ShowUser: React.FC<Props> = ({ userId }) => {
+const ShowUser: React.FC<Props> = ({ username }) => {
   const [friend, setFriend] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -20,7 +20,7 @@ const ShowUser: React.FC<Props> = ({ userId }) => {
     const fetchFriend = async () => {
       try {
         const response = await axios.get<User>(
-          `https://api-mangazone.onrender.com/api/user/id/${userId}`
+          `https://api-mangazone.onrender.com/api/user/${username}`
         );
         setFriend(response.data);
         setLoading(false);
@@ -31,7 +31,7 @@ const ShowUser: React.FC<Props> = ({ userId }) => {
     };
 
     fetchFriend();
-  }, [userId]);
+  }, [username]);
 
   const handleNavigateFriend = (friendUsername: string) => {
     router.push(`/u/${friendUsername}`)

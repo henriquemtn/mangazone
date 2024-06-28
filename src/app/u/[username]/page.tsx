@@ -12,13 +12,6 @@ import GetFriends from "@/components/user/GetFriends";
 import GetMangaCollection from "@/components/user/GetMangaCollection";
 import { User } from "@/types/types";
 import axios from "axios";
-import {
-  Edit,
-  GiftIcon,
-  ImagesIcon,
-  MessageCircleIcon,
-  UserPlus,
-} from "lucide-react";
 import React, { useEffect, useState } from "react";
 
 export default function UserPage({ params }: any) {
@@ -40,6 +33,7 @@ export default function UserPage({ params }: any) {
           `https://api-mangazone.onrender.com/api/user/${username}`
         );
         setUser(response.data);
+        console.log(user)
       } catch (error) {
         console.error("Erro ao buscar usuário:", error);
         setUser(null);
@@ -90,7 +84,7 @@ export default function UserPage({ params }: any) {
             </div>
           </div>
           <div className="flex flex-col w-full md:w-3/4 border-[1px] rounded-md">
-            <GetMangaCollection username={user.username} />
+            <GetMangaCollection username={username} isAuthenticatedUser={isAuthenticatedUser} />
             <hr />
             <GetFavorites username={user.username} />
             <hr />

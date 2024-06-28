@@ -56,7 +56,7 @@ export default function GetCharacters({ username }: CP) {
           Personagens: ({user.characters.length})
         </p>
         {isAuthenticatedUser ? (
-          <AddCharacters />
+          <AddCharacters username={username} />
         ) : (
           null
         )}

@@ -16,7 +16,11 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
 
-export function AddFavorites() {
+interface CP {
+  username: string;
+}
+
+export function AddFavorites({username}: CP) {
   const [manga, setManga] = useState<Manga[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [token, setToken] = useState<string | null>(null);
@@ -72,7 +76,7 @@ export function AddFavorites() {
 
       const cleanedToken = tokenFromCookie.replace(/"/g, ""); // Remove as aspas do token
       const response = await axios.get(
-        "https://api-mangazone.onrender.com/api/user/starwhenry",
+        `https://api-mangazone.onrender.com/api/user/${username}`,
         {
           headers: {
             Authorization: `Bearer ${cleanedToken}`,
@@ -99,7 +103,7 @@ export function AddFavorites() {
 
       const cleanedToken = tokenFromCookie.replace(/"/g, ""); // Remove as aspas do token
       await axios.put(
-        "http://localhost:3000/api/user/addFavorites",
+        "https://api-mangazone.onrender.com/api/user/addFavorites",
         {
           mangaId,
         },
@@ -128,7 +132,7 @@ export function AddFavorites() {
 
       const cleanedToken = tokenFromCookie.replace(/"/g, ""); // Remove as aspas do token
       await axios.put(
-        "http://localhost:3000/api/user/removeFavorites",
+        "https://api-mangazone.onrender.com/api/user/removeFavorites",
         {
           mangaId,
         },

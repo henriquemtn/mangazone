@@ -69,11 +69,12 @@ export default function ActionButtons({ username }: CP) {
     try {
       if (!token) {
         console.error("Token de autenticação ausente, acesso negado");
+        toast.error("Você precisa estar logado para adicionar amigos.");
         return;
       }
 
       await axios.put(
-        "http://localhost:3000/api/user/addFriend",
+        "https://api-mangazone.onrender.com/api/user/addFriend",
         {
           friendId: username,
         },
@@ -100,7 +101,7 @@ export default function ActionButtons({ username }: CP) {
       }
 
       await axios.put(
-        "http://localhost:3000/api/user/removeFriend",
+        "https://api-mangazone.onrender.com/api/user/removeFriend",
         {
           friendId: username,
         },
@@ -126,15 +127,15 @@ export default function ActionButtons({ username }: CP) {
       <Button className="w-1/4" variant="secondary">
         <ImagesIcon size={22} />
       </Button>
-      {user && username && (
+      {username && (
         <>
-          {user.friends && user.friends.includes(username) ? (
+          {user && user.friends && user.friends.includes(username) ? (
             <Button
               onClick={removeFriend}
               className="w-1/4"
               variant="secondary"
             >
-              <UserCheck size={22} /> 
+              <UserCheck size={22} />
             </Button>
           ) : (
             <Button onClick={addFriend} className="w-1/4" variant="secondary">
