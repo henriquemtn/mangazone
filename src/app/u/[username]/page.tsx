@@ -82,7 +82,7 @@ export default function UserPage({ params }: any) {
               )}
               <GetFriends username={user.username} />
               <hr />
-              <p className="text-white p-2">"{user.biography}"</p>
+              <p className="text-white p-2">{user.biography}</p>
               <p className="text-white p-2">Location: <span className="text-purple-500">{user.location}</span></p>
             </div>
           </div>

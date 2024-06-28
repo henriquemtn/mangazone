@@ -174,7 +174,7 @@ export default function MangaSearchById({ mangaUrl }: CP) {
               </p>
             </div>
             <div className="w-1/4 flex justify-center items-center md:block">
-              <img
+              <Image
                 src={manga.imageUrl || "/placeholder.svg"}
                 alt={manga.title}
                 width={250}
@@ -228,7 +228,7 @@ export default function MangaSearchById({ mangaUrl }: CP) {
                           {volume.number}
                         </TableCell>
                         <TableCell>
-                          <img
+                          <Image
                             src={volume.image || "/placeholder.svg"}
                             alt={`Volume ${volume.number} Cover`}
                             width={100}
