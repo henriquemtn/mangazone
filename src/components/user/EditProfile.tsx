@@ -97,7 +97,7 @@ export default function EditProfile() {
           <Edit size={16} />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] bg-[#22262F] text-white">
         <DialogHeader>
           <DialogTitle>Editar Informações do Usuário</DialogTitle>
         </DialogHeader>
@@ -110,7 +110,7 @@ export default function EditProfile() {
               id="displayName"
               defaultValue={displayNameUser}
               onChange={(e) => setDisplayNameUser(e.target.value)}
-              className="col-span-3"
+              className="col-span-3 bg-[#22262F]"
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
@@ -121,7 +121,7 @@ export default function EditProfile() {
               id="username"
               defaultValue={usernameUser}
               onChange={(e) => setUsernameUser(e.target.value)}
-              className="col-span-3"
+              className="col-span-3 bg-[#22262F]"
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
@@ -132,7 +132,7 @@ export default function EditProfile() {
               id="biography"
               defaultValue={biographyUser}
               onChange={(e) => setBiographyUser(e.target.value)}
-              className="col-span-3"
+             className="col-span-3 bg-[#22262F]"
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
@@ -143,7 +143,7 @@ export default function EditProfile() {
               id="gender"
               defaultValue={genderUser}
               onChange={(e) => setGenderUser(e.target.value)}
-              className="col-span-3"
+              className="col-span-3 bg-[#22262F]"
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
@@ -154,7 +154,7 @@ export default function EditProfile() {
               id="photoURL"
               defaultValue={photoURLUser}
               onChange={(e) => setPhotoURLUser(e.target.value)}
-              className="col-span-3"
+              className="col-span-3 bg-[#22262F]"
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
@@ -165,7 +165,7 @@ export default function EditProfile() {
               id="location"
               defaultValue={locationUser}
               onChange={(e) => setLocationUser(e.target.value)}
-              className="col-span-3"
+              className="col-span-3 bg-[#22262F]"
             />
           </div>
         </div>

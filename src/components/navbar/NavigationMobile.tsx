@@ -27,8 +27,8 @@ export function NavigationMobile() {
               <Package2 className="h-6 w-6" />
               <span className="sr-only">Acme Inc</span>
             </Link>
-            <Link href="/dashboard" className="hover:text-foreground">
-              Dashboard
+            <Link href="/" className="hover:text-foreground">
+              Home
             </Link>
             <Link
               href="/mangas"

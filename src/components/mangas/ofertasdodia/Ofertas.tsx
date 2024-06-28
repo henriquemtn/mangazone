@@ -49,7 +49,7 @@ export default function OfertasDoDia() {
             ))}
         </div>
       ) : (
-        <div className="grid grid-cols-8 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-8 gap-4">
           {mangas.map((manga, index) => (
             <div
               onClick={() => handleClickManga(manga.link)}

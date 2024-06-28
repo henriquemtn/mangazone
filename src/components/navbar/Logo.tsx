@@ -7,7 +7,7 @@ const Logo = () => {
   const router = useRouter();
 
   return ( 
-    <h1 className="text-white">MangaZone</h1>
+    <h1 className="hidden md:block text-white">MangaZone</h1>
    );
 }
  
