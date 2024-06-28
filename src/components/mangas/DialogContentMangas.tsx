@@ -241,7 +241,7 @@ const DialogContentMangas: React.FC<Props> = ({
                           <Button
                             className="text-white w-full text-[12px] items-center gap-1 bg-[#1C212B] border-white"
                             variant="outline"
-                            onClick={() => addVolumeToManga(volume._id)}
+                            onClick={() => handleLink(volume.linkAmazon)}
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -301,7 +301,7 @@ const DialogContentMangas: React.FC<Props> = ({
                           <Button
                             className="text-white w-full text-[12px] items-center gap-1 bg-[#1C212B] border-white"
                             variant="outline"
-                            onClick={() => addVolumeToManga(volume._id)}
+                            onClick={() => handleLink(volume.linkAmazon)}
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"

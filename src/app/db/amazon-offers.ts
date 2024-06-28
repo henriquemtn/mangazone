@@ -96,6 +96,7 @@ const amazonOffers = {
       imageUrl: "https://m.media-amazon.com/images/I/611K3vX6FbL.AC_UY218.jpg",
       link: "https://amzn.to/3VLTno6",
     },
+
     {
       title: "Little Witch Academia - Vol. 1",
       author: "Trigger, Yoh Yoshinari, e outros.",
