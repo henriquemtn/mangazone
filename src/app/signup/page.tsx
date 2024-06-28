@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import Cookie from "js-cookie";
 
 export default function SignUp() {
   const router = useRouter();
@@ -30,6 +31,7 @@ export default function SignUp() {
       if (typeof window !== "undefined") {
         localStorage.setItem("token", JSON.stringify(token));
         localStorage.setItem("user", JSON.stringify(user));
+        Cookie.set("token", JSON.stringify(token));
       }
 
       toast.success("Usuário logado com sucesso!");
