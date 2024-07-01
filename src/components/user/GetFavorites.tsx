@@ -5,6 +5,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import MangaFavorites from "../mangas/MangaFavorites";
 import AddFavorites from "../mangas/AddFavorites";
+import { useRouter } from "next/navigation";
 
 interface CP {
   username: string;

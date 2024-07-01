@@ -58,13 +58,29 @@ const GetManga: React.FC<Props> = ({ mangaId, inCollection }) => {
             <div className="flex justify-between">
               <Badge variant="outline">
                 <p className="text-yellow-500">
-                  {inCollection} <span className="text-white"> / {manga.volumes.length}</span>
+                  {inCollection}{" "}
+                  <span className="text-white text-[8px]">
+                    {" "}
+                    / {manga.volumes.length}
+                  </span>
                 </p>
               </Badge>
 
-              <Badge className="text-purple-500 border-purple-500" variant="outline">
-                Colecionando
-              </Badge>
+              {inCollection === manga.volumes.length ? (
+                <Badge
+                  className="text-green-500 border-green-500"
+                  variant="outline"
+                >
+                  Completo
+                </Badge>
+              ) : (
+                <Badge
+                  className="text-purple-500 border-purple-500"
+                  variant="outline"
+                >
+                  Colecionando
+                </Badge>
+              )}
             </div>
           </div>
         </div>

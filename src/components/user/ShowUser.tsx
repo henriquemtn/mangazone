@@ -41,7 +41,7 @@ const ShowUser: React.FC<Props> = ({ username }) => {
     return (
       <div className="flex flex-wrap gap-4">
         <div className="flex flex-col items-center gap-2">
-          <Skeleton className="w-[160px] h-[260px] rounded-md" />
+          <Skeleton className="w-[52px] h-[52px] rounded-full" />
         </div>
       </div>
     );

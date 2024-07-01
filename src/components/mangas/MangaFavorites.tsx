@@ -4,6 +4,7 @@ import { Manga } from '@/types/types';
 import { Skeleton } from '../ui/skeleton';
 import { Badge } from '../ui/badge';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 interface Props {
   mangaId: string;
@@ -13,6 +14,11 @@ const MangaFavorites: React.FC<Props> = ({ mangaId }) => {
   const [manga, setManga] = useState<Manga | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
+
+  const handleNavigate = (mangaId: string) => {
+    router.push(`/manga/${mangaId}`)
+  }
 
   useEffect(() => {
     const fetchManga = async () => {
@@ -33,7 +39,7 @@ const MangaFavorites: React.FC<Props> = ({ mangaId }) => {
     return (
       <div className="flex flex-wrap gap-4">
           <div className="flex flex-col items-center gap-2">
-            <Skeleton className="w-[160px] h-[260px] rounded-md" />
+            <Skeleton className="w-[82px] h-[116px] rounded-md" />
           </div>
       </div>
     );
@@ -45,6 +51,7 @@ const MangaFavorites: React.FC<Props> = ({ mangaId }) => {
     <div>
       {manga ? (
         <div
+        onClick={() => handleNavigate(manga?._id)}
         className="flex h-auto rounded items-start justify-between flex-col transition-all cursor-pointer"
       >
         <div className="w-[82px]">

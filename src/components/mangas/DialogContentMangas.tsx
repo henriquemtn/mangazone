@@ -187,18 +187,27 @@ const DialogContentMangas: React.FC<Props> = ({
                         {manga.volumes.length}
                       </span>
                     </p>
-                    <Badge
-                      className="text-green-500  border-green-500"
-                      variant="outline"
-                    >
-                      Completa
-                    </Badge>
+                    {manga.volumes.length ? (
+                      <Badge
+                        className="text-green-500 border-green-500"
+                        variant="outline"
+                      >
+                        Completo
+                      </Badge>
+                    ) : (
+                      <Badge
+                        className="text-purple-500 border-purple-500"
+                        variant="outline"
+                      >
+                        Colecionando
+                      </Badge>
+                    )}
                   </div>
                 </div>
               </div>
             </DialogDescription>
           </DialogHeader>
-          <div className="grid grid-cols-7 gap-4">
+          <div className="grid grid-cols-7 gap-4 overflow-y-auto h-[400px] p-1">
             {loadingVolumes
               ? Array.from({ length: 7 }).map((_, index) => (
                   <div key={index} className="flex flex-col items-center gap-2">
@@ -218,6 +227,7 @@ const DialogContentMangas: React.FC<Props> = ({
                       width={125}
                       onClick={() => handleLink(volume.linkAmazon)}
                       height={175}
+                      className="h-full bg-cover"
                     />
                     <h1 className="text-white text-[16px]">
                       Volume{" "}

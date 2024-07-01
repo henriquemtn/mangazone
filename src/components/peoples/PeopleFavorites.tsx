@@ -34,7 +34,7 @@ const PeopleFavorites: React.FC<Props> = ({ artistId }) => {
     return (
       <div className="flex flex-wrap gap-4">
         <div className="flex flex-col items-center gap-2">
-          <Skeleton className="w-[160px] h-[260px] rounded-md" />
+        <Skeleton className="w-[82px] h-[116px] rounded-sm" />
         </div>
       </div>
     );
